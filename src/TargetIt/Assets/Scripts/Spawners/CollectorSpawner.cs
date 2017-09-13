@@ -5,13 +5,14 @@ using UnityEngine;
 public class CollectorSpawner : MonoBehaviour {
 
     public static CollectorSpawner instance;
-    [SerializeField]
     GameObject CollectorPrefab;
     float currentSpeedMultiplier;
 
 
     // Use this for initialization
     void Start () {
+        CollectorPrefab = GameManager.instance.currentCollectorSkin;
+
         SpawnNewCollector(new Vector3(0, 3, 0), GameplayController.instance.usedColors[0]);
         SpawnNewCollector(new Vector3(2, 1, 0), GameplayController.instance.usedColors[1]);
         SpawnNewCollector(new Vector3(-2, 1, 0), GameplayController.instance.usedColors[2]);

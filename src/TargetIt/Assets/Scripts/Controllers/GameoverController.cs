@@ -53,8 +53,7 @@ public class GameoverController : MonoBehaviour {
 
     public void ChooseSkin()
     {
-        if (!ClickAudioSource.isPlaying)
-            ClickAudioSource.PlayOneShot(ClickClip);
+        StartCoroutine(LoadLevel("SelectSkin"));
     }
 
     public void NoAds()

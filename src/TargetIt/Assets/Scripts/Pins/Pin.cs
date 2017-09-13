@@ -7,7 +7,6 @@ using System;
 
 public class Pin : MonoBehaviour
 {
-
     [SerializeField]
     public GameObject spear;
     [SerializeField]
@@ -17,6 +16,7 @@ public class Pin : MonoBehaviour
     private Vector3 target;
     private float lastSqrMag;
     private Vector2 targetPos;
+    public bool isPinned = false;
 
     // Use this for initialization
     void Start()
@@ -67,6 +67,7 @@ public class Pin : MonoBehaviour
 
                 //(collision.GetComponent<SpriteRenderer>().color == gameObject.GetComponent<SpriteRenderer>().color)
                 transform.SetParent(collision.transform);
+                isPinned = true;
 
                 if (!GameplayController.instance.collectorIsDisappearing)
                 {
@@ -82,7 +83,18 @@ public class Pin : MonoBehaviour
         else if ((collision.tag == "Spear" || collision.tag == "Pin") && Move2DObject.getDistance(gameObject.transform.position, new Vector2(0,-1.9f)) > 0.5f)
         {
             SpriteRenderer collisionRenderer = collision.GetComponent<SpriteRenderer>();
-            if (collisionRenderer.color == GetComponent<SpriteRenderer>().color)
+            bool isCollisionPinned;
+
+            try
+            {
+                isCollisionPinned = collision.GetComponent<Pin>().isPinned;
+            }
+            catch (NullReferenceException)
+            {
+                isCollisionPinned = collision.transform.parent.GetComponent<Pin>().isPinned;
+            }
+
+            if (collisionRenderer.color == GetComponent<SpriteRenderer>().color && isCollisionPinned)
             {
                 GameplayController.instance.losing = true;
                 SceneManager.LoadScene("Gameover");

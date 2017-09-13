@@ -6,7 +6,6 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class GameplayController : MonoBehaviour {
-
     //Public
     public static GameplayController instance;
     public List<Color> availableColors;
@@ -38,31 +37,8 @@ public class GameplayController : MonoBehaviour {
 
     private void Update()
     {
-        //if (Input.GetTouch(0).phase == TouchPhase.Began && isShooting && !collectorIsDisappearing && !EventSystem.current.IsPointerOverGameObject())
-        //{
-            //Check what is the phone touching
-            //if (iPhoneInput.touchCount >= 1)
-            //{
-            //    Ray cursorRay = Camera.main.ScreenPointToRay(iPhoneInput.GetTouch(0).position);
-            //    RaycastHit hit;
-            //    if (collider.Raycast(cursorRay, out hit, 1000.0f))
-            //    {
-            //        Debug.Log("Hit detected on object " + name + " at point " + hit.point);
-            //    }
-            //}
-        //    Vector3 fingerPos = Input.GetTouch(0).position;
 
-        //    isShooting = true;
-        //    Vector3 position = new Vector3(fingerPos.x, fingerPos.y, 0);
-        //    position = Camera.main.ScreenToWorldPoint(position);
-        //    currentPins[0].GetComponent<Pin>().setTarget(position);
-        //    //currentPins[0].GetComponent<Pin>().setTarget2(new Vector2(position.x,position.y));
-
-        //    currentPins[0].GetComponent<Pin>().isMoving = true;
-        //    currentPins[0].GetComponent<Pin>().spear.SetActive(true);
-
-        //    currentPins.RemoveAt(0);
-        //}
+        ////For Unity
         if (Input.GetMouseButtonDown(0) && !isShooting && !collectorIsDisappearing && !EventSystem.current.IsPointerOverGameObject())
         {
             isShooting = true;
@@ -76,6 +52,29 @@ public class GameplayController : MonoBehaviour {
 
             currentPins.RemoveAt(0);
         }
+
+        ////For Phone
+        //if (Input.touchCount > 0 && !isShooting && !collectorIsDisappearing)
+        //{
+        //    if (Input.GetTouch(0).phase == TouchPhase.Began)
+        //    {
+        //        if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+        //        {
+        //            Vector3 fingerPos = Input.GetTouch(0).position;
+
+        //            isShooting = true;
+        //            Vector3 position = new Vector3(fingerPos.x, fingerPos.y, 0);
+        //            position = Camera.main.ScreenToWorldPoint(position);
+        //            currentPins[0].GetComponent<Pin>().setTarget(position);
+        //            //currentPins[0].GetComponent<Pin>().setTarget2(new Vector2(position.x,position.y));
+
+        //            currentPins[0].GetComponent<Pin>().isMoving = true;
+        //            currentPins[0].GetComponent<Pin>().spear.SetActive(true);
+
+        //            currentPins.RemoveAt(0);
+        //        }
+        //    }
+        //}
     }
    
 
@@ -96,14 +95,11 @@ public class GameplayController : MonoBehaviour {
         availableColors.Add(Parse("#3498db"));
         availableColors.Add(Parse("#9b59b6"));
         availableColors.Add(Parse("#34495e"));
-        availableColors.Add(Parse("#16a085"));
         availableColors.Add(Parse("#27ae60"));
         availableColors.Add(Parse("#2980b9"));
-        availableColors.Add(Parse("#8e44ad"));
         availableColors.Add(Parse("#2c3e50"));
-        availableColors.Add(Parse("#e67e22"));
-        availableColors.Add(Parse("#f39c12"));
         availableColors.Add(Parse("#d35400"));
+        //availableColors.Add(Parse("#f39c12"));
         availableColors.Add(Parse("#c0392b"));
 
 

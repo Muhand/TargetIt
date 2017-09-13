@@ -10,7 +10,9 @@ namespace Assets.Scripts.Enums
         public enum SettingsNames
         {
             Music,
-            HighestScore
+            HighestScore,
+            SelectedPinSkin,
+            SelectedCollectorSkin
         }
         public enum Music
         {

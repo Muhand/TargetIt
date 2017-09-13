@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: ae7e450d9f65a0c4db7b087db834f4eb
-timeCreated: 1504771717
+guid: 9abbf5770781cb24898fbe4c7736b2ab
+timeCreated: 1505096685
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,9 +10,9 @@ TextureImporter:
     21300006: Leaderboard Button 0
     21300008: Leaderboard Button 1
     21300010: Leaderboard Button 2
-    21300012: PinSkin Button 0
-    21300014: PinSkin Button 1
-    21300016: PinSkin Button 2
+    21300012: Skin Button 0
+    21300014: Skin Button 1
+    21300016: Skin Button 2
     21300018: NoAds Button 0
     21300020: NoAds Button 1
     21300022: NoAds Button 2
@@ -118,11 +118,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 20
-        y: 942
-        width: 56
-        height: 62
+        y: 1690
+        width: 251
+        height: 244
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -130,12 +130,12 @@ TextureImporter:
       name: Restart Button 1
       rect:
         serializedVersion: 2
-        x: 82
-        y: 942
-        width: 56
-        height: 62
+        x: 291
+        y: 1690
+        width: 251
+        height: 244
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -143,12 +143,12 @@ TextureImporter:
       name: Restart Button 2
       rect:
         serializedVersion: 2
-        x: 144
-        y: 942
-        width: 57
-        height: 62
+        x: 559
+        y: 1690
+        width: 251
+        height: 244
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -156,12 +156,12 @@ TextureImporter:
       name: Leaderboard Button 0
       rect:
         serializedVersion: 2
-        x: 209
-        y: 942
-        width: 56
-        height: 62
+        x: 20
+        y: 1424
+        width: 251
+        height: 244
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -169,12 +169,12 @@ TextureImporter:
       name: Leaderboard Button 1
       rect:
         serializedVersion: 2
-        x: 271
-        y: 942
-        width: 56
-        height: 62
+        x: 291
+        y: 1424
+        width: 251
+        height: 244
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -182,51 +182,51 @@ TextureImporter:
       name: Leaderboard Button 2
       rect:
         serializedVersion: 2
-        x: 333
-        y: 942
-        width: 57
-        height: 62
+        x: 559
+        y: 1424
+        width: 251
+        height: 244
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinSkin Button 0
+      name: Skin Button 0
       rect:
         serializedVersion: 2
-        x: 396
-        y: 942
-        width: 56
-        height: 62
+        x: 20
+        y: 1161
+        width: 251
+        height: 244
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinSkin Button 1
+      name: Skin Button 1
       rect:
         serializedVersion: 2
-        x: 458
-        y: 942
-        width: 56
-        height: 62
+        x: 291
+        y: 1161
+        width: 251
+        height: 244
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinSkin Button 2
+      name: Skin Button 2
       rect:
         serializedVersion: 2
-        x: 520
-        y: 942
-        width: 57
-        height: 62
+        x: 559
+        y: 1161
+        width: 251
+        height: 244
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -234,12 +234,12 @@ TextureImporter:
       name: NoAds Button 0
       rect:
         serializedVersion: 2
-        x: 583
-        y: 942
-        width: 56
-        height: 62
+        x: 22
+        y: 899
+        width: 251
+        height: 244
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -247,12 +247,12 @@ TextureImporter:
       name: NoAds Button 1
       rect:
         serializedVersion: 2
-        x: 645
-        y: 942
-        width: 56
-        height: 62
+        x: 293
+        y: 899
+        width: 251
+        height: 244
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -260,12 +260,12 @@ TextureImporter:
       name: NoAds Button 2
       rect:
         serializedVersion: 2
-        x: 707
-        y: 942
-        width: 57
-        height: 62
+        x: 561
+        y: 899
+        width: 251
+        height: 244
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

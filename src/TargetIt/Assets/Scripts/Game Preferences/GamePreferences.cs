@@ -24,5 +24,26 @@ public static class GamePreferences
         return PlayerPrefs.GetInt(Settings.SettingsNames.HighestScore.ToString());
     }
 
+    public static void SetPinSkin(Skins.Pin skin)
+    {
+        PlayerPrefs.SetInt(Settings.SettingsNames.SelectedPinSkin.ToString(), (int)skin);
+    }
+    public static Skins.Pin GetPinSkin()
+    {
+        int skin = PlayerPrefs.GetInt(Settings.SettingsNames.SelectedPinSkin.ToString());
+        var res = (Skins.Pin)skin;
+        return res;
+    }
+
+    public static void SetCollectorSkin(Skins.Collector skin)
+    {
+        PlayerPrefs.SetInt(Settings.SettingsNames.SelectedCollectorSkin.ToString(), (int)skin);
+    }
+    public static Skins.Collector GetCollectorSkin()
+    {
+        int skin = PlayerPrefs.GetInt(Settings.SettingsNames.SelectedCollectorSkin.ToString());
+        var res = (Skins.Collector)skin;
+        return res;
+    }
 
 }

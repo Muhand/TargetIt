@@ -6,7 +6,7 @@ public class PinSpawner : MonoBehaviour {
 
     public static PinSpawner instance;
 
-    [SerializeField]
+    //[SerializeField]
     GameObject pinPrefab;
     float startingY;
 
@@ -32,7 +32,7 @@ public class PinSpawner : MonoBehaviour {
         ////    currentY = currentY - (transform.position.y / 6);
         ////}
         ////SpawnNewPin();
-
+        pinPrefab = GameManager.instance.currentPinSkin;
     }
 
     private void FixedUpdate()
