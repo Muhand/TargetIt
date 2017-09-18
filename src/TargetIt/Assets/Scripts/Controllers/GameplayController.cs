@@ -95,12 +95,12 @@ public class GameplayController : MonoBehaviour {
         availableColors.Add(Parse("#3498db"));
         availableColors.Add(Parse("#9b59b6"));
         availableColors.Add(Parse("#34495e"));
-        availableColors.Add(Parse("#27ae60"));
-        availableColors.Add(Parse("#2980b9"));
-        availableColors.Add(Parse("#2c3e50"));
-        availableColors.Add(Parse("#d35400"));
+        //availableColors.Add(Parse("#27ae60"));
+        //availableColors.Add(Parse("#2980b9"));
+        //availableColors.Add(Parse("#2c3e50"));
+        //availableColors.Add(Parse("#d35400"));
         //availableColors.Add(Parse("#f39c12"));
-        availableColors.Add(Parse("#c0392b"));
+        //availableColors.Add(Parse("#c0392b"));
 
 
         //Randomize 3 colors
