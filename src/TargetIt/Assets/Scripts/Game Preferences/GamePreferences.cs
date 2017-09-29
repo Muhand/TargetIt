@@ -45,5 +45,15 @@ public static class GamePreferences
         var res = (Skins.Collector)skin;
         return res;
     }
+	public static void SetAdsSettings(Settings.Ads state)
+	{
+		PlayerPrefs.SetInt (Settings.SettingsNames.Ads.ToString (), (int)state);
+	}
+	public static Settings.Ads GetAdsSettings()
+	{
+		int state = (PlayerPrefs.GetInt(Settings.SettingsNames.Ads.ToString()));
+		var res = (Settings.Ads)state;
+		return res;
+	}
 
 }

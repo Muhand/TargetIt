@@ -64,7 +64,7 @@ public class Collector : MonoBehaviour {
 
     private void OnBecameInvisible()
     {
-        if (!isGameOverDispaly && GameplayController.instance.losing == false)
+        if (!isGameOverDispaly && GameplayController.instance.losing == false && transform.parent.gameObject.activeInHierarchy == true)
         {
             GameplayController.instance.currentCollectors.Remove(gameObject);
             GameplayController.instance.collectorIsDisappearing = false;
