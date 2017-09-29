@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class GameoverController : MonoBehaviour {
 
@@ -12,14 +13,42 @@ public class GameoverController : MonoBehaviour {
     AudioClip ClickClip;
     [SerializeField]
     Text CurrentScoreTextField;
-    [SerializeField]
-    Text HighestScoreTextField;
+//    [SerializeField]
+//    Text HighestScoreTextField;
+	[SerializeField]
+	Button NoAdsButton;
+	private bool gameJustStarted = true;
 
     private void Start()
     {
         int currentScore = GameplayController.instance.getScore();
         CurrentScoreTextField.text = currentScore.ToString();
+		DisableNoAdsButtonIfBought ();
+
+		try
+		{
+			if (GamePreferences.GetAdsSettings () == Assets.Scripts.Enums.Settings.Ads.Show) {
+				if (AdsController.instance.getBannerView != null)
+					AdsController.instance.getBannerView.Destroy ();
+				AdsController.instance.RequestInterstitial ();
+			}
+		}
+		catch(NullReferenceException exception) {
+			
+		}
     }
+
+	void Update()
+	{
+		if (gameJustStarted && (GamePreferences.GetAdsSettings () == Assets.Scripts.Enums.Settings.Ads.Show)) {
+			if(AdsController.instance.getInterstitialView.IsLoaded())
+			{
+//				AdsController.instance.ShowInterstitial ();
+				AdsController.instance.getInterstitialView.Show();
+				gameJustStarted = false;
+			}
+		}
+	}
 
     void CheckToPlayMusic()
     {
@@ -56,13 +85,39 @@ public class GameoverController : MonoBehaviour {
         StartCoroutine(LoadLevel("SelectSkin"));
     }
 
-    public void NoAds()
+    public void RestorePurchases()
     {
-        if (!ClickAudioSource.isPlaying)
-            ClickAudioSource.PlayOneShot(ClickClip);
+        IAPManager.instance.RestorePurchases();
     }
 
+    public void NoAds()
+    {
+        //if (!ClickAudioSource.isPlaying)
+        //    ClickAudioSource.PlayOneShot(ClickClip);
+        IAPManager.instance.BuyNoAds();
+		DisableNoAdsButtonIfBought ();
+    }
 
+	private void DisableNoAdsButtonIfBought()
+	{
+		try{
+			if (IAPManager.instance.isItemBought (IAPManager.PRODUCT_NO_ADS)) {
+				NoAdsButton.interactable = false;
+				print ("YES YOU BOUGHT IT");
+			}
+		}
+		catch(NullReferenceException ex) {
+		}
+	}
+
+	public void DeleteSaved()
+	{
+		try{
+			PlayerPrefs.DeleteAll();
+		}
+		catch(NullReferenceException ex) {
+		}
+	}
 
     IEnumerator LoadLevel(string levelName)
     {

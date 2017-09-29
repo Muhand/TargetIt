@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour {
     GameObject[] availablePinSkins;
     [SerializeField]
     GameObject[] availableCollectorSkins;
+    [SerializeField]
+    GameObject tutorialPanel;
+    
+    public bool playingTutorial = false;
 
 
     void Awake () {
@@ -22,8 +26,10 @@ public class GameManager : MonoBehaviour {
         setCurrentPinSkin();
         setCurrentCollectorSkin();
         initializePlayerPrefs();
+
+        PlayerPrefs.DeleteAll();
     }
-    
+
     public void setCurrentPinSkin()
     {
         Skins.Pin temp = GamePreferences.GetPinSkin();
@@ -64,16 +70,25 @@ public class GameManager : MonoBehaviour {
 
     void initializePlayerPrefs()
     {
-        if(!PlayerPrefs.HasKey("Game Initialized"))
+        if (!PlayerPrefs.HasKey("Game Initialized"))
         {
             GamePreferences.SetMusicState(Assets.Scripts.Enums.Settings.Music.On);
+            //			if(LeaderboardController.instance.authenticated)
+            //				GamePreferences.SetHighestScore (LeaderboardController.instance.getPlyersHighestScore());
+            //			else
             GamePreferences.SetHighestScore(0);
             GamePreferences.SetPinSkin(Skins.Pin.Default);
             GamePreferences.SetCollectorSkin(Skins.Collector.Default);
-
+            GamePreferences.SetAdsSettings(Assets.Scripts.Enums.Settings.Ads.Show);
 
             PlayerPrefs.SetInt("Game Initialized", 0);
+
+            //Enable tutorial since this is the first time the user downloads the game
+            tutorialPanel.SetActive(true);
+            playingTutorial = true;
         }
-        
+        else
+            Destroy(tutorialPanel);
+
     }
 }

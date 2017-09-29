@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class CollectorSpawner : MonoBehaviour {
 
-    public static CollectorSpawner instance;
+    //public static CollectorSpawner instance;
     GameObject CollectorPrefab;
     float currentSpeedMultiplier;
+
+    [SerializeField]
+    GameObject CollectorsPanel;
 
 
     // Use this for initialization
@@ -92,10 +95,12 @@ public class CollectorSpawner : MonoBehaviour {
         obj.gameObject.GetComponent<SpriteRenderer>().color = selectedColor;
         obj.gameObject.GetComponent<Collector>().rotationSpeed = GameplayController.instance.speedOfDiedController* currentSpeedMultiplier;
         GameplayController.instance.currentCollectors.Add(obj);
+        obj.transform.parent = CollectorsPanel.transform;
     }
     void instantiateObject(GameObject obj, Color color)
     {
         obj.gameObject.GetComponent<SpriteRenderer>().color = color;
         GameplayController.instance.currentCollectors.Add(obj);
+        obj.transform.parent = CollectorsPanel.transform;
     }
 }

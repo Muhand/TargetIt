@@ -9,10 +9,14 @@ public class PinSpawner : MonoBehaviour {
     //[SerializeField]
     GameObject pinPrefab;
     float startingY;
+    public bool allPinsSpawned = false;
+
+    [SerializeField]
+    GameObject PinsPanel;
 
     // Use this for initialization
     void Start () {
-        if (instance != null)
+        if (instance == null)
             instance = this;
         ////startingY = -2f;
         ////float currentY = startingY;
@@ -33,19 +37,41 @@ public class PinSpawner : MonoBehaviour {
         ////}
         ////SpawnNewPin();
         pinPrefab = GameManager.instance.currentPinSkin;
-    }
 
-    private void FixedUpdate()
-    {
-        if(GameplayController.instance.currentPins.Count < 4)
+
+        for (int i = 0; i < 4; i++)
         {
-            if (GameplayController.instance.currentPins.Count == 0)
+            if (i == 0)
             {
-                //SpawnNewArrow(new Vector3(0,-2,0));
                 SpawnNewArrow(transform.position);
             }
             else
             {
+                for (int j = 0; j < GameplayController.instance.currentPins.Count; j++)
+                {
+                    Vector3 temp = GameplayController.instance.currentPins[j].transform.position;
+                    temp.y += 0.7f;
+                    GameplayController.instance.currentPins[j].transform.position = temp;
+                }
+                SpawnNewArrow(transform.position);
+            }
+        }
+        allPinsSpawned = true;
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (GameplayController.instance.currentPins.Count < 4 && allPinsSpawned == true)
+        {
+        
+            //if (GameplayController.instance.currentPins.Count == 0)
+            //{
+            //    //SpawnNewArrow(new Vector3(0,-2,0));
+            //    SpawnNewArrow(transform.position);
+            //}
+            //else
+            //{
                 //SpawnNewArrow(new Vector3(0, GameplayController.instance.currentPins[GameplayController.instance.currentPins.Count - 1].transform.position.y - 0.7f,0));
                 for (int i = 0; i < GameplayController.instance.currentPins.Count; i++)
                 {
@@ -57,7 +83,11 @@ public class PinSpawner : MonoBehaviour {
                     //GameplayController.instance.currentPins[i].transform.position = Vector3.MoveTowards(GameplayController.instance.currentPins[i].transform.position, temp, 400000 * Time.deltaTime);
                 }
                 SpawnNewArrow(transform.position);
-            }
+            //}
+        }
+        else
+        {
+  
         }
     }
 
@@ -79,5 +109,6 @@ public class PinSpawner : MonoBehaviour {
         Color selectedColor = GameplayController.instance.usedColors[r];
         obj.gameObject.GetComponent<SpriteRenderer>().color = selectedColor;
         GameplayController.instance.currentPins.Add(obj);
+        obj.transform.parent = PinsPanel.transform;
     }
 }

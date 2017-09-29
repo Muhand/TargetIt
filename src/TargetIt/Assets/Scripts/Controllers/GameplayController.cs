@@ -24,64 +24,79 @@ public class GameplayController : MonoBehaviour {
     [SerializeField]
     private Sprite[] musicIcons;
     public float speedOfDiedController;
-
-
+	private bool gameJustStarted = true;
+	private bool adIsShowin = false;
+    
     void Awake () {
         if (instance == null)
             instance = this;
 
         init();
 
-        //PlayerPrefs.DeleteAll();
+
+        if (GamePreferences.GetAdsSettings () == Assets.Scripts.Enums.Settings.Ads.Show) {
+			AdsController.instance.RequestBanner ();
+			AdsController.instance.RequestInterstitial ();
+		}
     }
 
     private void Update()
     {
+		if (gameJustStarted && (GamePreferences.GetAdsSettings () == Assets.Scripts.Enums.Settings.Ads.Show) && !adIsShowin) {
+			if (AdsController.instance.getInterstitialView.IsLoaded ()) {
+//				AdsController.instance.ShowInterstitial ();
+				AdsController.instance.getInterstitialView.Show();
+				gameJustStarted = false;
+				adIsShowin = true;
+			}
+		}
 
         ////For Unity
-        if (Input.GetMouseButtonDown(0) && !isShooting && !collectorIsDisappearing && !EventSystem.current.IsPointerOverGameObject())
+        #if UNITY_EDITOR
         {
-            isShooting = true;
-            Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
-            position = Camera.main.ScreenToWorldPoint(position);
-            currentPins[0].GetComponent<Pin>().setTarget(position);
-            //currentPins[0].GetComponent<Pin>().setTarget2(new Vector2(position.x,position.y));
+            if (Input.GetMouseButtonDown(0) && !isShooting && !collectorIsDisappearing && !EventSystem.current.IsPointerOverGameObject() && !GameManager.instance.playingTutorial)
+            {
+                isShooting = true;
+                Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
+                position = Camera.main.ScreenToWorldPoint(position);
+                currentPins[0].GetComponent<Pin>().setTarget(position);
+                //currentPins[0].GetComponent<Pin>().setTarget2(new Vector2(position.x,position.y));
 
-            currentPins[0].GetComponent<Pin>().isMoving = true;
-            currentPins[0].GetComponent<Pin>().spear.SetActive(true);
+                currentPins[0].GetComponent<Pin>().isMoving = true;
+                currentPins[0].GetComponent<Pin>().spear.SetActive(true);
 
-            currentPins.RemoveAt(0);
+                currentPins.RemoveAt(0);
+            }
         }
-
+        #endif
         ////For Phone
-        //if (Input.touchCount > 0 && !isShooting && !collectorIsDisappearing)
-        //{
-        //    if (Input.GetTouch(0).phase == TouchPhase.Began)
-        //    {
-        //        if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
-        //        {
-        //            Vector3 fingerPos = Input.GetTouch(0).position;
+        if (Input.touchCount > 0 && !isShooting && !collectorIsDisappearing)
+        {
+            if (Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+                {
+                    Vector3 fingerPos = Input.GetTouch(0).position;
 
-        //            isShooting = true;
-        //            Vector3 position = new Vector3(fingerPos.x, fingerPos.y, 0);
-        //            position = Camera.main.ScreenToWorldPoint(position);
-        //            currentPins[0].GetComponent<Pin>().setTarget(position);
-        //            //currentPins[0].GetComponent<Pin>().setTarget2(new Vector2(position.x,position.y));
+                    isShooting = true;
+                    Vector3 position = new Vector3(fingerPos.x, fingerPos.y, 0);
+                    position = Camera.main.ScreenToWorldPoint(position);
+                    currentPins[0].GetComponent<Pin>().setTarget(position);
+                    //currentPins[0].GetComponent<Pin>().setTarget2(new Vector2(position.x,position.y));
 
-        //            currentPins[0].GetComponent<Pin>().isMoving = true;
-        //            currentPins[0].GetComponent<Pin>().spear.SetActive(true);
+                    currentPins[0].GetComponent<Pin>().isMoving = true;
+                    currentPins[0].GetComponent<Pin>().spear.SetActive(true);
 
-        //            currentPins.RemoveAt(0);
-        //        }
-        //    }
-        //}
+                    currentPins.RemoveAt(0);
+                }
+            }
+        }
     }
    
 
     private void init()
     {
         //Set FPS
-
 
         //Initialize lists
         availableColors = new List<Color>();
@@ -91,10 +106,15 @@ public class GameplayController : MonoBehaviour {
         availableColors.Add(Parse("#f1c40f"));
         availableColors.Add(Parse("#e74c3c"));
         availableColors.Add(Parse("#2ecc71"));
-        availableColors.Add(Parse("#1abc9c"));
+        availableColors.Add(Parse("#FFB6C1"));
         availableColors.Add(Parse("#3498db"));
         availableColors.Add(Parse("#9b59b6"));
         availableColors.Add(Parse("#34495e"));
+
+        //Adds Confusion to the game
+        //availableColors.Add(Parse("#1abc9c"));
+        ////////////////////////////////////////////
+
         //availableColors.Add(Parse("#27ae60"));
         //availableColors.Add(Parse("#2980b9"));
         //availableColors.Add(Parse("#2c3e50"));

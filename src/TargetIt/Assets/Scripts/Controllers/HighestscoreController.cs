@@ -14,7 +14,7 @@ public class HighestscoreController : MonoBehaviour {
     }
 
     void SetScore()
-    {
+	{
         HighestScoreText.text = GamePreferences.GetHighestScore().ToString();
     }
 }

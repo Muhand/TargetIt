@@ -22,7 +22,11 @@ public class SelectSkinController : MonoBehaviour {
 
     void Start () {
         showPinSkins();
-
+		if (GamePreferences.GetAdsSettings () == Assets.Scripts.Enums.Settings.Ads.Show) {
+			if (AdsController.instance.getInterstitialView != null)
+				AdsController.instance.getInterstitialView.Destroy ();
+			AdsController.instance.RequestBanner();
+		}
     }
 
     public void showPinSkins()

@@ -82,6 +82,11 @@ public class Pin : MonoBehaviour
         }
         else if ((collision.tag == "Spear" || collision.tag == "Pin") && Move2DObject.getDistance(gameObject.transform.position, new Vector2(0,-1.9f)) > 0.5f)
         {
+            if (collision.tag == "Pin")
+            {
+                if (!(collision.GetComponent<Pin>().isMoving == true || isMoving))
+                    return;
+            }
             SpriteRenderer collisionRenderer = collision.GetComponent<SpriteRenderer>();
             bool isCollisionPinned;
 
@@ -99,6 +104,7 @@ public class Pin : MonoBehaviour
                 GameplayController.instance.losing = true;
                 SceneManager.LoadScene("Gameover");
             }
+
         }
     }
 
