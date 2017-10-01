@@ -25,12 +25,19 @@ public class GameoverController : MonoBehaviour {
         CurrentScoreTextField.text = currentScore.ToString();
 		DisableNoAdsButtonIfBought ();
 
+        //Reset how many times a player lost
+        GameManager.instance.timesLost=0;
 		try
 		{
 			if (GamePreferences.GetAdsSettings () == Assets.Scripts.Enums.Settings.Ads.Show) {
-				if (AdsController.instance.getBannerView != null)
-					AdsController.instance.getBannerView.Destroy ();
-				AdsController.instance.RequestInterstitial ();
+                //Get a random number between 0 and 10 if the number is = to 2 then show ad
+                int adOdd = UnityEngine.Random.Range(0, 10);
+                if (adOdd == 2)
+                {
+                    if (AdsController.instance.getBannerView != null)
+                        AdsController.instance.getBannerView.Destroy();
+                    AdsController.instance.RequestInterstitial();
+                }
 			}
 		}
 		catch(NullReferenceException exception) {

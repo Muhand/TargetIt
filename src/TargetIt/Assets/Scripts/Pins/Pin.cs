@@ -11,6 +11,8 @@ public class Pin : MonoBehaviour
     public GameObject spear;
     [SerializeField]
     public Rigidbody2D rb;
+    [SerializeField]
+    
     public float speed = 20f;
     public bool isMoving = false;
     private Vector3 target;
@@ -57,7 +59,15 @@ public class Pin : MonoBehaviour
             if (CollectorSpriteRenderer.color != gameObject.GetComponent<SpriteRenderer>().color)
             {
                 GameplayController.instance.losing = true;
-                SceneManager.LoadScene("Gameover");
+
+                if(GameManager.instance.timesLost>0)
+                    SceneManager.LoadScene("Gameover");
+                else
+                {
+                    Destroy(gameObject);
+                    GameplayController.instance.gameOverPanel.SetActive(true);
+                }
+
             }
             else
             {
@@ -102,7 +112,14 @@ public class Pin : MonoBehaviour
             if (collisionRenderer.color == GetComponent<SpriteRenderer>().color && isCollisionPinned)
             {
                 GameplayController.instance.losing = true;
-                SceneManager.LoadScene("Gameover");
+
+                if (GameManager.instance.timesLost > 0)
+                    SceneManager.LoadScene("Gameover");
+                else
+                {
+                    Destroy(gameObject);
+                    GameplayController.instance.gameOverPanel.SetActive(true);
+                }
             }
 
         }

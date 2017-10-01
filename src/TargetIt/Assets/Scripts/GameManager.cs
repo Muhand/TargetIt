@@ -17,7 +17,8 @@ public class GameManager : MonoBehaviour {
     GameObject tutorialPanel;
     
     public bool playingTutorial = false;
-
+    public bool gamePlaySceneVisited = false;
+    public int timesLost = 0;
 
     void Awake () {
         QualitySettings.vSyncCount = 0;  // VSync must be disabled
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour {
         setCurrentCollectorSkin();
         initializePlayerPrefs();
 
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
     }
 
     public void setCurrentPinSkin()
