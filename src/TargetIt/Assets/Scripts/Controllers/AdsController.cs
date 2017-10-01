@@ -2,6 +2,7 @@
 using UnityEngine;
 using GoogleMobileAds;
 using GoogleMobileAds.Api;
+using Assets.Scripts.Enums;
 
 public class AdsController : MonoBehaviour {
 
@@ -12,8 +13,9 @@ public class AdsController : MonoBehaviour {
 	private RewardBasedVideoAd rewardBasedVideo;
 	private float deltaTime = 0.0f;
 	private static string outputMessage = string.Empty;
+    public RewardVideoCallBack rewardVideoStatus;
 
-	public static string OutputMessage
+    public static string OutputMessage
 	{
 		set
 		{
@@ -32,6 +34,13 @@ public class AdsController : MonoBehaviour {
 			return interstitial;
 		}
 	}
+    public RewardBasedVideoAd getRewardAd
+    {
+        get
+        {
+            return rewardBasedVideo;
+        }
+    }
 
 	void Awake()
 	{
@@ -85,15 +94,15 @@ public class AdsController : MonoBehaviour {
 	// Returns an ad request with custom ad targeting.
 	private AdRequest CreateAdRequest()
 	{
-		//FOR TESTING
-//		return new AdRequest.Builder()
-//			.AddTestDevice(AdRequest.TestDeviceSimulator)
-//			.AddTestDevice("45e380434cc2f8a9b4228f603a9987d1")
-//			.Build();
+        //FOR TESTING
+        return new AdRequest.Builder()
+            .AddTestDevice(AdRequest.TestDeviceSimulator)
+            .AddTestDevice("45e380434cc2f8a9b4228f603a9987d1")
+            .Build();
 
-		//FOR PRODUCTION
-		return new AdRequest.Builder ().Build ();
-	}
+        //FOR PRODUCTION
+        //return new AdRequest.Builder ().Build ();
+    }
 		
 	public void RequestBanner()
 	{
@@ -161,7 +170,7 @@ public class AdsController : MonoBehaviour {
 		this.interstitial.LoadAd(this.CreateAdRequest());
 	}
 
-	private void RequestNativeExpressAdView()
+	public void RequestNativeExpressAdView()
 	{
 		// These ad units are configured to always serve test ads.
 		#if UNITY_EDITOR
@@ -197,19 +206,19 @@ public class AdsController : MonoBehaviour {
 		this.nativeExpressAdView.LoadAd(this.CreateAdRequest());
 	}
 
-	private void RequestRewardBasedVideo()
+	public void RequestRewardBasedVideo()
 	{
 		#if UNITY_EDITOR
-		string adUnitId = "unused";
-		#elif UNITY_ANDROID
-		string adUnitId = "ca-app-pub-3940256099942544/5224354917";
-		#elif UNITY_IPHONE
-		string adUnitId = "ca-app-pub-3940256099942544/1712485313";
-		#else
-		string adUnitId = "unexpected_platform";
-		#endif
+		    string adUnitId = "unused";
+        #elif UNITY_ANDROID
+		    string adUnitId = "ca-app-pub-3940256099942544/5224354917";
+        #elif UNITY_IPHONE
+            string adUnitId = "ca-app-pub-4660233401396733/9177122574";
+        #else
+		    string adUnitId = "unexpected_platform";
+        #endif
 
-		this.rewardBasedVideo.LoadAd(this.CreateAdRequest(), adUnitId);
+        this.rewardBasedVideo.LoadAd(this.CreateAdRequest(), adUnitId);
 	}
 		public void shh()
 	{
@@ -220,30 +229,30 @@ public class AdsController : MonoBehaviour {
 	{
 		this.interstitial.Destroy ();
 	}
-	public void ShowInterstitial()
-	{
-		if (this.interstitial.IsLoaded())
-		{
-			this.interstitial.Show();
-		}
-		else
-		{
-			MonoBehaviour.print("Interstitial is not ready yet");
-		}
-	}
+	    public void ShowInterstitial()
+	    {
+		    if (this.interstitial.IsLoaded())
+		    {
+			    this.interstitial.Show();
+		    }
+		    else
+		    {
+			    MonoBehaviour.print("Interstitial is not ready yet");
+		    }
+	    }
 
 
-	private void ShowRewardBasedVideo()
-	{
-		if (this.rewardBasedVideo.IsLoaded())
-		{
-			this.rewardBasedVideo.Show();
-		}
-		else
-		{
-			MonoBehaviour.print("Reward based video ad is not ready yet");
-		}
-	}
+	    private void ShowRewardBasedVideo()
+	    {
+		    if (this.rewardBasedVideo.IsLoaded())
+		    {
+			    this.rewardBasedVideo.Show();
+		    }
+		    else
+		    {
+			    MonoBehaviour.print("Reward based video ad is not ready yet");
+		    }
+	    }
 
 		#region Banner callback handlers
 
@@ -338,42 +347,50 @@ public class AdsController : MonoBehaviour {
 
 		public void HandleRewardBasedVideoLoaded(object sender, EventArgs args)
 		{
-		MonoBehaviour.print("HandleRewardBasedVideoLoaded event received");
+		    MonoBehaviour.print("HandleRewardBasedVideoLoaded event received");
+            rewardVideoStatus = RewardVideoCallBack.HandleRewardBasedVideoLoaded;
 		}
 
 		public void HandleRewardBasedVideoFailedToLoad(object sender, AdFailedToLoadEventArgs args)
 		{
-		MonoBehaviour.print(
-		"HandleRewardBasedVideoFailedToLoad event received with message: " + args.Message);
+		    MonoBehaviour.print(
+		"   HandleRewardBasedVideoFailedToLoad event received with message: " + args.Message);
+            rewardVideoStatus = RewardVideoCallBack.HandleRewardBasedVideoFailedToLoad;
 		}
 
 		public void HandleRewardBasedVideoOpened(object sender, EventArgs args)
 		{
-		MonoBehaviour.print("HandleRewardBasedVideoOpened event received");
-		}
+		    MonoBehaviour.print("HandleRewardBasedVideoOpened event received");
+            rewardVideoStatus = RewardVideoCallBack.HandleRewardBasedVideoOpened;
+        }
 
 		public void HandleRewardBasedVideoStarted(object sender, EventArgs args)
 		{
-		MonoBehaviour.print("HandleRewardBasedVideoStarted event received");
-		}
+		    MonoBehaviour.print("HandleRewardBasedVideoStarted event received");
+            rewardVideoStatus = RewardVideoCallBack.HandleRewardBasedVideoStarted;
+
+        }
 
 		public void HandleRewardBasedVideoClosed(object sender, EventArgs args)
 		{
-		MonoBehaviour.print("HandleRewardBasedVideoClosed event received");
-		}
+		    MonoBehaviour.print("HandleRewardBasedVideoClosed event received");
+            rewardVideoStatus = RewardVideoCallBack.HandleRewardBasedVideoClosed;
+        }
 
 		public void HandleRewardBasedVideoRewarded(object sender, Reward args)
 		{
-		string type = args.Type;
-		double amount = args.Amount;
-		MonoBehaviour.print(
-		"HandleRewardBasedVideoRewarded event received for " + amount.ToString() + " " + type);
-		}
+		    string type = args.Type;
+		    double amount = args.Amount;
+		    MonoBehaviour.print(
+		    "HandleRewardBasedVideoRewarded event received for " + amount.ToString() + " " + type);
+            rewardVideoStatus = RewardVideoCallBack.HandleRewardBasedVideoRewarded;
+        }
 
 		public void HandleRewardBasedVideoLeftApplication(object sender, EventArgs args)
 		{
-		MonoBehaviour.print("HandleRewardBasedVideoLeftApplication event received");
-		}
+		    MonoBehaviour.print("HandleRewardBasedVideoLeftApplication event received");
+            rewardVideoStatus = RewardVideoCallBack.HandleRewardBasedVideoLeftApplication;
+        }
 
 		#endregion
 }

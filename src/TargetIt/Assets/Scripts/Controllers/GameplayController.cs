@@ -26,7 +26,9 @@ public class GameplayController : MonoBehaviour {
     public float speedOfDiedController;
 	private bool gameJustStarted = true;
 	private bool adIsShowin = false;
-    
+    [SerializeField]
+    public GameObject gameOverPanel;
+
     void Awake () {
         if (instance == null)
             instance = this;
@@ -36,8 +38,12 @@ public class GameplayController : MonoBehaviour {
 
         if (GamePreferences.GetAdsSettings () == Assets.Scripts.Enums.Settings.Ads.Show) {
 			AdsController.instance.RequestBanner ();
-			AdsController.instance.RequestInterstitial ();
+            if (!GameManager.instance.gamePlaySceneVisited)
+                AdsController.instance.RequestInterstitial();
 		}
+
+        if(!GameManager.instance.gamePlaySceneVisited)
+            GameManager.instance.gamePlaySceneVisited = true;
     }
 
     private void Update()
@@ -66,10 +72,11 @@ public class GameplayController : MonoBehaviour {
                 currentPins[0].GetComponent<Pin>().spear.SetActive(true);
 
                 currentPins.RemoveAt(0);
+                isShooting = false;
             }
         }
-        #endif
-        ////For Phone
+#endif
+        //For Phone
         if (Input.touchCount > 0 && !isShooting && !collectorIsDisappearing)
         {
             if (Input.GetTouch(0).phase == TouchPhase.Began)
