@@ -23,7 +23,7 @@ public class LeaderboardController : MonoBehaviour {
 	void ProcessAuthentication(bool success)
     {
 		if (success) {
-			print ("Authenticated, checking achievements");
+			//print ("Authenticated, checking achievements");
 //			log.text += "Authenticated, checking ach÷ißevements" + Environment.NewLine;
 			//Social.LoadAchievements (ProcessLoadedAchievements);
 			//Social.LoadScores ("com.muhandjumah.targetit.leaderboard", ProcessLoadedScores);
@@ -42,7 +42,7 @@ public class LeaderboardController : MonoBehaviour {
 //				});
 			authenticated=true;
 		} else {
-			print ("Failed to authenticate");
+			//print ("Failed to authenticate");
 			authenticated = false;
 //			log.text += "Failed to authenticate" + Environment.NewLine;
 		}
@@ -51,14 +51,15 @@ public class LeaderboardController : MonoBehaviour {
 	void ProcessLoadedScores(IScore[] scores)
 	{
 		if (scores.Length == 0) {
-			print ("Error: no scores found");
+			//print ("Error: no scores found");
 //			log.text += "Error: no scores found" + Environment.NewLine;
 		}
 		else 
 		{
-			print ("Found scores");
-			print ("Length: " + scores.Length);
-			print (Convert.ToInt32 (scores [0].value));
+			//print ("Found scores");
+			//print ("Length: " + scores.Length);
+			//print (Convert.ToInt32 (scores [0].value));
+            //-----------------------------------------------
 //			log.text += scores.Length;
 			//log.text += scores.Length + Environment.NewLine+Social.localUser.id;
 			//currentPlyersHighestScore = Convert.ToInt32(scores[Convert.ToInt32(Social.localUser.id)]);

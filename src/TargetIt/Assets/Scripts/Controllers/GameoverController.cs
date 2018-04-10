@@ -29,17 +29,21 @@ public class GameoverController : MonoBehaviour {
         GameManager.instance.timesLost=0;
 		try
 		{
-			if (GamePreferences.GetAdsSettings () == Assets.Scripts.Enums.Settings.Ads.Show) {
-                //Get a random number between 0 and 10 if the number is = to 2 then show ad
-                int adOdd = UnityEngine.Random.Range(0, 10);
-                if (adOdd == 2)
+            if(GamePreferences.GetAdsSettings() == Assets.Scripts.Enums.Settings.Ads.Show)
+            {
+                if (AdsController.instance.getBannerView != null)
+                    AdsController.instance.getBannerView.Destroy();
+
+                GameManager.instance.adsOddOnGamePlay = UnityEngine.Random.Range(1, 7);
+
+                if (!GameManager.instance.usedRewardToContinuePlaying)
                 {
-                    if (AdsController.instance.getBannerView != null)
-                        AdsController.instance.getBannerView.Destroy();
-                    AdsController.instance.RequestInterstitial();
+                    if(!(GameManager.instance.adsOddOnGamePlay == GameManager.instance.adGoldenNumber))
+                        AdsController.instance.RequestInterstitial();
                 }
-			}
-		}
+            }
+
+        }
 		catch(NullReferenceException exception) {
 			
 		}
@@ -47,7 +51,7 @@ public class GameoverController : MonoBehaviour {
 
 	void Update()
 	{
-		if (gameJustStarted && (GamePreferences.GetAdsSettings () == Assets.Scripts.Enums.Settings.Ads.Show)) {
+		if (gameJustStarted && (GamePreferences.GetAdsSettings () == Assets.Scripts.Enums.Settings.Ads.Show) && !(GameManager.instance.usedRewardToContinuePlaying)) {
 			if(AdsController.instance.getInterstitialView.IsLoaded())
 			{
 //				AdsController.instance.ShowInterstitial ();
@@ -110,7 +114,7 @@ public class GameoverController : MonoBehaviour {
 		try{
 			if (IAPManager.instance.isItemBought (IAPManager.PRODUCT_NO_ADS)) {
 				NoAdsButton.interactable = false;
-				print ("YES YOU BOUGHT IT");
+				//print ("YES YOU BOUGHT IT");
 			}
 		}
 		catch(NullReferenceException ex) {

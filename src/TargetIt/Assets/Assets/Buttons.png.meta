@@ -1,21 +1,39 @@
 fileFormatVersion: 2
-guid: 9abbf5770781cb24898fbe4c7736b2ab
-timeCreated: 1505096685
+guid: dd105f8796636e84aaf12789ae8c39aa
+timeCreated: 1506825440
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Restart Button 0
-    21300002: Restart Button 1
-    21300004: Restart Button 2
-    21300006: Leaderboard Button 0
-    21300008: Leaderboard Button 1
-    21300010: Leaderboard Button 2
-    21300012: Skin Button 0
-    21300014: Skin Button 1
-    21300016: Skin Button 2
-    21300018: NoAds Button 0
-    21300020: NoAds Button 1
-    21300022: NoAds Button 2
+    21300000: Buttons 1_0
+    21300002: Buttons 1_1
+    21300004: Buttons 1_2
+    21300006: Buttons 1_3
+    21300008: Buttons 1_4
+    21300010: Buttons 1_5
+    21300012: Buttons 1_6
+    21300014: Buttons 1_7
+    21300016: Buttons 1_8
+    21300018: Buttons 1_9
+    21300020: Buttons 1_10
+    21300022: Buttons 1_11
+    21300024: Restart Button 0
+    21300026: Restart Button 1
+    21300028: Restart Button 2
+    21300030: Leaderboard Button 0
+    21300032: Leaderboard Button 1
+    21300034: Leaderboard Button 2
+    21300036: Skin Button 0
+    21300038: Skin Button 1
+    21300040: Skin Button 2
+    21300042: NoAds Button 0
+    21300044: NoAds Button 1
+    21300046: NoAds Button 2
+    21300048: Continue Playing 0
+    21300050: Continue Playing 1
+    21300052: Continue Playing 2
+    21300054: Blank Button 0
+    21300056: Blank Button 1
+    21300058: Blank Button 2
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -80,12 +98,12 @@ TextureImporter:
     overridden: 0
   - buildTarget: iPhone
     maxTextureSize: 2048
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
   - buildTarget: tvOS
     maxTextureSize: 2048
     textureFormat: -1
@@ -113,6 +131,162 @@ TextureImporter:
   spriteSheet:
     serializedVersion: 2
     sprites:
+    - serializedVersion: 2
+      name: Buttons 1_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 1966
+        width: 56
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Buttons 1_1
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 1966
+        width: 56
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Buttons 1_2
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 1966
+        width: 57
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Buttons 1_3
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 1966
+        width: 56
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Buttons 1_4
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 1966
+        width: 56
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Buttons 1_5
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 1966
+        width: 57
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Buttons 1_6
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 1966
+        width: 56
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Buttons 1_7
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 1966
+        width: 56
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Buttons 1_8
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 1966
+        width: 57
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Buttons 1_9
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 1966
+        width: 56
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Buttons 1_10
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 1966
+        width: 56
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Buttons 1_11
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 1966
+        width: 57
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
     - serializedVersion: 2
       name: Restart Button 0
       rect:
@@ -264,6 +438,84 @@ TextureImporter:
         y: 899
         width: 251
         height: 244
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Continue Playing 0
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 643
+        width: 251
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Continue Playing 1
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 643
+        width: 251
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Continue Playing 2
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 643
+        width: 251
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Blank Button 0
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 381
+        width: 251
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Blank Button 1
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 381
+        width: 251
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Blank Button 2
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 381
+        width: 251
+        height: 238
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

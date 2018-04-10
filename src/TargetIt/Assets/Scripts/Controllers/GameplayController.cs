@@ -36,11 +36,20 @@ public class GameplayController : MonoBehaviour {
         init();
 
 
+
         if (GamePreferences.GetAdsSettings () == Assets.Scripts.Enums.Settings.Ads.Show) {
-			AdsController.instance.RequestBanner ();
+
             if (!GameManager.instance.gamePlaySceneVisited)
+                GameManager.instance.adsOddOnGamePlay = Random.Range(1, 7);
+
+            AdsController.instance.RequestBanner ();
+            //int adOdd = UnityEngine.Random.Range(1, 7);
+
+            if (GameManager.instance.adsOddOnGamePlay == GameManager.instance.adGoldenNumber)
                 AdsController.instance.RequestInterstitial();
-		}
+            //if (!GameManager.instance.gamePlaySceneVisited)
+            //AdsController.instance.RequestInterstitial();
+        }
 
         if(!GameManager.instance.gamePlaySceneVisited)
             GameManager.instance.gamePlaySceneVisited = true;
@@ -48,14 +57,25 @@ public class GameplayController : MonoBehaviour {
 
     private void Update()
     {
-		if (gameJustStarted && (GamePreferences.GetAdsSettings () == Assets.Scripts.Enums.Settings.Ads.Show) && !adIsShowin) {
-			if (AdsController.instance.getInterstitialView.IsLoaded ()) {
-//				AdsController.instance.ShowInterstitial ();
-				AdsController.instance.getInterstitialView.Show();
-				gameJustStarted = false;
-				adIsShowin = true;
-			}
-		}
+        try
+        {
+            if (gameJustStarted && (GamePreferences.GetAdsSettings() == Assets.Scripts.Enums.Settings.Ads.Show) && !adIsShowin)
+            {
+                if (AdsController.instance.getInterstitialView.IsLoaded())
+                {
+                    //print("AD IS SHOWING: " + adIsShowin);
+                    //print("GAME JUST STARTED: " +gameJustStarted);
+                    //				AdsController.instance.ShowInterstitial ();
+                    AdsController.instance.getInterstitialView.Show();
+                    gameJustStarted = false;
+                    adIsShowin = true;
+                }
+            }
+        }
+        catch(System.NullReferenceException)
+        {
+
+        }
 
         ////For Unity
         #if UNITY_EDITOR
@@ -77,7 +97,7 @@ public class GameplayController : MonoBehaviour {
         }
 #endif
         //For Phone
-        if (Input.touchCount > 0 && !isShooting && !collectorIsDisappearing)
+        if (Input.touchCount > 0 && !isShooting && !collectorIsDisappearing && !GameManager.instance.playingTutorial)
         {
             if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
@@ -95,6 +115,7 @@ public class GameplayController : MonoBehaviour {
                     currentPins[0].GetComponent<Pin>().spear.SetActive(true);
 
                     currentPins.RemoveAt(0);
+                    isShooting = false;
                 }
             }
         }

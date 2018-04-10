@@ -13,7 +13,7 @@ public class TutorialController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        print("Tutorial is on");
+        //print("Tutorial is on");
         Time.timeScale = 0.0f;
         pinsPanel.SetActive(true);
         collectorsPanel.SetActive(false);

@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour {
     public bool playingTutorial = false;
     public bool gamePlaySceneVisited = false;
     public int timesLost = 0;
+    public bool usedRewardToContinuePlaying;
+    public int adGoldenNumber = 2;
+    public int adsOddOnGamePlay;
 
     void Awake () {
         QualitySettings.vSyncCount = 0;  // VSync must be disabled
@@ -27,7 +30,8 @@ public class GameManager : MonoBehaviour {
         setCurrentPinSkin();
         setCurrentCollectorSkin();
         initializePlayerPrefs();
-
+        usedRewardToContinuePlaying = false;
+        
         //PlayerPrefs.DeleteAll();
     }
 

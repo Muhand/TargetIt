@@ -50,7 +50,7 @@ public class Pin : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("COllided with " + collision.name+" Tag = "+collision.tag);
+        //print("COllided with " + collision.name+" Tag = "+collision.tag);
 
         if (collision.tag == "Collector")
         {
@@ -58,10 +58,13 @@ public class Pin : MonoBehaviour
             SpriteRenderer CollectorSpriteRenderer = collision.GetComponent<SpriteRenderer>();
             if (CollectorSpriteRenderer.color != gameObject.GetComponent<SpriteRenderer>().color)
             {
-                GameplayController.instance.losing = true;
 
-                if(GameManager.instance.timesLost>0)
+
+                if (GameManager.instance.timesLost > 0)
+                {
+                    GameplayController.instance.losing = true;
                     SceneManager.LoadScene("Gameover");
+                }
                 else
                 {
                     Destroy(gameObject);
@@ -111,10 +114,12 @@ public class Pin : MonoBehaviour
 
             if (collisionRenderer.color == GetComponent<SpriteRenderer>().color && isCollisionPinned)
             {
-                GameplayController.instance.losing = true;
-
+                
                 if (GameManager.instance.timesLost > 0)
+                {
+                    GameplayController.instance.losing = true;
                     SceneManager.LoadScene("Gameover");
+                }
                 else
                 {
                     Destroy(gameObject);

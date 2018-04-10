@@ -26,7 +26,7 @@ public class CollectorSpawner : MonoBehaviour {
     {
         if(GameplayController.instance.currentCollectors.Count < 3)
         {
-            print("Spawning new collecor");
+            //print("Spawning new collecor");
 
             for (int i = 0; i < GameplayController.instance.currentlyDeletedCollectors.Count; i++)
             {

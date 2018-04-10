@@ -75,13 +75,13 @@ public class AdsController : MonoBehaviour {
 		this.rewardBasedVideo = RewardBasedVideoAd.Instance;
 
 		// RewardBasedVideoAd is a singleton, so handlers should only be registered once.
-		this.rewardBasedVideo.OnAdLoaded += this.HandleRewardBasedVideoLoaded;
-		this.rewardBasedVideo.OnAdFailedToLoad += this.HandleRewardBasedVideoFailedToLoad;
-		this.rewardBasedVideo.OnAdOpening += this.HandleRewardBasedVideoOpened;
-		this.rewardBasedVideo.OnAdStarted += this.HandleRewardBasedVideoStarted;
-		this.rewardBasedVideo.OnAdRewarded += this.HandleRewardBasedVideoRewarded;
-		this.rewardBasedVideo.OnAdClosed += this.HandleRewardBasedVideoClosed;
-		this.rewardBasedVideo.OnAdLeavingApplication += this.HandleRewardBasedVideoLeftApplication;
+		//this.rewardBasedVideo.OnAdLoaded += this.HandleRewardBasedVideoLoaded;
+		//this.rewardBasedVideo.OnAdFailedToLoad += this.HandleRewardBasedVideoFailedToLoad;
+		//this.rewardBasedVideo.OnAdOpening += this.HandleRewardBasedVideoOpened;
+		//this.rewardBasedVideo.OnAdStarted += this.HandleRewardBasedVideoStarted;
+		//this.rewardBasedVideo.OnAdRewarded += this.HandleRewardBasedVideoRewarded;
+		//this.rewardBasedVideo.OnAdClosed += this.HandleRewardBasedVideoClosed;
+		//this.rewardBasedVideo.OnAdLeavingApplication += this.HandleRewardBasedVideoLeftApplication;
 	}
 
 	public void Update()
@@ -94,14 +94,14 @@ public class AdsController : MonoBehaviour {
 	// Returns an ad request with custom ad targeting.
 	private AdRequest CreateAdRequest()
 	{
-        //FOR TESTING
-        return new AdRequest.Builder()
-            .AddTestDevice(AdRequest.TestDeviceSimulator)
-            .AddTestDevice("45e380434cc2f8a9b4228f603a9987d1")
-            .Build();
+        ////FOR TESTING
+        //return new AdRequest.Builder()
+        //    .AddTestDevice(AdRequest.TestDeviceSimulator)
+        //    .AddTestDevice("45e380434cc2f8a9b4228f603a9987d1")
+        //    .Build();
 
         //FOR PRODUCTION
-        //return new AdRequest.Builder ().Build ();
+        return new AdRequest.Builder ().Build ();
     }
 		
 	public void RequestBanner()
@@ -242,7 +242,7 @@ public class AdsController : MonoBehaviour {
 	    }
 
 
-	    private void ShowRewardBasedVideo()
+	    public void ShowRewardBasedVideo()
 	    {
 		    if (this.rewardBasedVideo.IsLoaded())
 		    {
@@ -381,7 +381,7 @@ public class AdsController : MonoBehaviour {
 		{
 		    string type = args.Type;
 		    double amount = args.Amount;
-		    MonoBehaviour.print(
+		    print(
 		    "HandleRewardBasedVideoRewarded event received for " + amount.ToString() + " " + type);
             rewardVideoStatus = RewardVideoCallBack.HandleRewardBasedVideoRewarded;
         }
